@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-10">
             <div class="card">
                 <div class="card-header">{{ __('Cronograma') }}</div>
 
@@ -15,14 +15,14 @@
                     @endif
 
 
-                    <table class="table table-bordered" id="cronograma-table" width="100">
+                    <table cclass="table table-striped table-bordered" style="width:100%" id="cronograma-table">
                         <thead>
                             <tr>
                                 <th>Id</th>
                                 <th>Name</th>
                                 <th>Email</th>
-                                <th>Created At</th>
-                                <th>Updated At</th>
+                                <th>Criado em</th>
+                                <th>Editado em </th>
                             </tr>
                         </thead>
                     </table>
@@ -68,8 +68,18 @@
                     data: 'updated_at',
                     name: 'updated_at'
                 }
-            ]
+            ],
+            language: {
+					url: 'https://cdn.datatables.net/plug-ins/1.12.1/i18n/pt-BR.json',
+					buttons: {
+						colvis: '{{trans("datatable.colvis")}}',
+						pdf: '{{trans("datatable.pdf")}}',
+						csv: '{{trans("datatable.csv")}}',
+					}
+				}
         });
+
+       
     });
 </script>
 @endpush
