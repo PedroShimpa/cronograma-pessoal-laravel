@@ -44,6 +44,7 @@
 						</div>
 						<hr>
 						<button type="submit" class="btn btn-primary">Salvar</button>
+						<a href="{{ route('home')}}" class="btn btn-secondary">Cancelar</a>
 					</form>
 				</div>
 			</div>

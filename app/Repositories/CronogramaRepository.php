@@ -24,7 +24,6 @@ class CronogramaRepository
 		try {
 			$created =  $this->cronograma->store($data);
 			if (!empty($created)) {
-
 				return ['success' => 'Atividade Criada'];
 			}
 		} catch (QueryException $th) {
@@ -38,7 +37,7 @@ class CronogramaRepository
 		$cronogramas = $this->cronograma->getAll($user_id);
 		$data =  $this->dataTables->of($cronogramas)
 			->addIndexColumn()
-			->whiteList('atividade', 'dia_semana');
+			->whiteList('atividade', 'dia_semana', 'hora','created_at');
 
 		return $data
 			->toJson();

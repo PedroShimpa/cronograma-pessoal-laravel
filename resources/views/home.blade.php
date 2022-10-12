@@ -17,8 +17,8 @@
                                 <th>Id</th>
                                 <th>Atividade</th>
                                 <th>Dia da Semana</th>
+                                <th>Hora</th>
                                 <th>Criado em</th>
-                                <th>Editado em </th>
                             </tr>
                         </thead>
                     </table>
@@ -57,13 +57,14 @@
                     name: 'dia_semana'
                 },
                 {
+                    data: 'hora',
+                    name: 'hora'
+                },
+                {
                     data: 'created_at',
                     name: 'created_at'
                 },
-                {
-                    data: 'updated_at',
-                    name: 'updated_at'
-                }
+            
             ],
             language: {
                 url: 'https://cdn.datatables.net/plug-ins/1.12.1/i18n/pt-BR.json',

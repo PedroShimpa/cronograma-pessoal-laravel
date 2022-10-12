@@ -19,6 +19,7 @@ class StoreCronogramaRequest extends FormRequest
     public function prepareForValidation()
     {
         $data['user_id'] = auth()->user()->id;
+        $data['hora'] = $this->hora;
 
         $this->request->add($data);
     }
@@ -33,7 +34,7 @@ class StoreCronogramaRequest extends FormRequest
         return [
             'atividade' => ['max:300', 'required'],
             'dia_semana' => ['required', 'integer', 'max:7'],
-            'hora' => ['max:300', 'max:10'],
+            'hora' => ['max:300', 'max:10', 'date_format:H:i'],
             'user_id' => ['required', 'integer', 'exists:App\Models\User,id']
         ];
     }

@@ -29,11 +29,12 @@ class Cronograma extends Model
     protected $casts = [
         'created_at' => 'datetime:d/m/Y',
         'updated_at' => 'datetime:d/m/Y',
+        'hora' => 'datetime:H:i',
     ];
 
     public function getAll(int $user_id = 0)
     {
-        $query =  $this->select('dia_semana', 'atividade', 'id', 'created_at', 'updated_at');
+        $query =  $this->select('dia_semana', 'atividade', 'id', 'created_at', 'hora');
         if(!empty($query)) {
            $query = $query->where('user_id', $user_id);
         }
