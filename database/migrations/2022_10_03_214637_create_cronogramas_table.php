@@ -15,9 +15,10 @@ class CreateCronogramasTable extends Migration
     {
         Schema::create('cronogramas', function (Blueprint $table) {
             $table->id();
-            $table->string('dia_semana', 30);
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->integer('dia_semana');
+            $table->time('hora');
             $table->string('atividade');
-        
             $table->timestamps();
         });
     }

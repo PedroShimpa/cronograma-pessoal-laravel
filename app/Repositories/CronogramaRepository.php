@@ -4,6 +4,8 @@
 namespace App\Repositories;
 
 use App\Models\Cronograma;
+use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Log;
 use Yajra\DataTables\DataTables;
 
 class CronogramaRepository
@@ -17,9 +19,19 @@ class CronogramaRepository
 		$this->cronograma = $cronograma;
 	}
 
-	public function store($data)
+	public function store(array $data)
 	{
-		return $this->cronograma->store($data);
+
+		try {
+			$created =  $this->cronograma->store($data);
+			if (!empty($created)) {
+
+				return ['success' => 'Atividade Criada'];
+			}
+		} catch (QueryException $th) {
+			Log::error($th);
+			return;
+		}
 	}
 
 	public function getAll()
@@ -31,5 +43,10 @@ class CronogramaRepository
 
 		return $data
 			->toJson();
+	}
+
+	public function getdiasSemana()
+	{
+		return $this->cronograma->diasSemana;
 	}
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Repositories\CronogramaRepository;
 use App\Http\Requests\StoreCronogramaRequest;
 use App\Http\Requests\UpdateCronogramaRequest;
+use Illuminate\Http\Request;
 
 class CronogramaController extends Controller
 {
@@ -40,8 +41,10 @@ class CronogramaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+        $diasSemana = $this->cronogramaRepository->getdiasSemana();
+        return view('create', compact('diasSemana'));
     }
 
     /**
@@ -52,7 +55,12 @@ class CronogramaController extends Controller
      */
     public function store(StoreCronogramaRequest $request)
     {
-        //
+        $created = $this->cronogramaRepository->store($request->validated());
+        if (!empty($created['success'])) {
+            return view('home')->with('success',$created['success']);
+        } else {
+            return redirect()->back()->with('error', 'Erro inesperado ao criar atividade')->withInput();
+        }
     }
 
     /**
@@ -61,7 +69,7 @@ class CronogramaController extends Controller
      * @param  \App\Models\Cronograma  $cronograma
      * @return \Illuminate\Http\Response
      */
-    public function show( )
+    public function show()
     {
         //
     }

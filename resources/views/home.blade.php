@@ -8,19 +8,15 @@
                 <div class="card-header">{{ __('Cronograma') }}</div>
 
                 <div class="card-body">
-                    @if (session('status'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session('status') }}
-                    </div>
-                    @endif
+                  
+                    <a class="btn btn-primary" href="{{ route('create.atividade')}}">Adicionar Atividade</a>
 
-
-                    <table cclass="table table-striped table-bordered" style="width:100%" id="cronograma-table">
+                    <table class="table mt-2 table-striped table-bordered" style="width:100%" id="cronograma-table">
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Name</th>
-                                <th>Email</th>
+                                <th>Atividade</th>
+                                <th>Dia da Semana</th>
                                 <th>Criado em</th>
                                 <th>Editado em </th>
                             </tr>
@@ -70,16 +66,16 @@
                 }
             ],
             language: {
-					url: 'https://cdn.datatables.net/plug-ins/1.12.1/i18n/pt-BR.json',
-					buttons: {
-						colvis: '{{trans("datatable.colvis")}}',
-						pdf: '{{trans("datatable.pdf")}}',
-						csv: '{{trans("datatable.csv")}}',
-					}
-				}
+                url: 'https://cdn.datatables.net/plug-ins/1.12.1/i18n/pt-BR.json',
+                buttons: {
+                    colvis: '{{trans("datatable.colvis")}}',
+                    pdf: '{{trans("datatable.pdf")}}',
+                    csv: '{{trans("datatable.csv")}}',
+                }
+            }
         });
 
-       
+
     });
 </script>
 @endpush
