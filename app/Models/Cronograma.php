@@ -26,9 +26,19 @@ class Cronograma extends Model
         7 => 'Sábado'
     ];
 
-    public function getAll()
+    protected $casts = [
+        'created_at' => 'datetime:d/m/Y',
+        'updated_at' => 'datetime:d/m/Y',
+    ];
+
+    public function getAll(int $user_id = 0)
     {
-        return $this->select('dia_semana', 'atividade', 'id', 'created_at', 'updated_at')->get();
+        $query =  $this->select('dia_semana', 'atividade', 'id', 'created_at', 'updated_at');
+        if(!empty($query)) {
+           $query = $query->where('user_id', $user_id);
+        }
+        
+       return $query->get();
     }
 
     public function store(array $data)
@@ -40,4 +50,5 @@ class Cronograma extends Model
     {
         return $this->diasSemana[$value];
     }
+   
 }

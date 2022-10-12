@@ -21,7 +21,6 @@ class CronogramaRepository
 
 	public function store(array $data)
 	{
-
 		try {
 			$created =  $this->cronograma->store($data);
 			if (!empty($created)) {
@@ -34,9 +33,9 @@ class CronogramaRepository
 		}
 	}
 
-	public function getAll()
+	public function getAll(int $user_id = 0)
 	{
-		$cronogramas = $this->cronograma->getAll();
+		$cronogramas = $this->cronograma->getAll($user_id);
 		$data =  $this->dataTables->of($cronogramas)
 			->addIndexColumn()
 			->whiteList('atividade', 'dia_semana');

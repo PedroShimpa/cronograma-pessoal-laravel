@@ -33,7 +33,7 @@ class CronogramaController extends Controller
      */
     public function getAll()
     {
-        return $this->cronogramaRepository->getAll();
+        return $this->cronogramaRepository->getAll(auth()->user()->id);
     }
 
     /**
@@ -57,7 +57,7 @@ class CronogramaController extends Controller
     {
         $created = $this->cronogramaRepository->store($request->validated());
         if (!empty($created['success'])) {
-            return view('home')->with('success',$created['success']);
+            return redirect()->route('home')->with('success',$created['success']);
         } else {
             return redirect()->back()->with('error', 'Erro inesperado ao criar atividade')->withInput();
         }
