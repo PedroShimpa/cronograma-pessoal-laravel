@@ -57,7 +57,7 @@ class CronogramaController extends Controller
     {
         $created = $this->cronogramaRepository->store($request->validated());
         if (!empty($created['success'])) {
-            return redirect()->route('home')->with('success',$created['success']);
+            return redirect()->route('home')->with('success', $created['success']);
         } else {
             return redirect()->back()->with('error', 'Erro inesperado ao criar atividade')->withInput();
         }
@@ -103,8 +103,13 @@ class CronogramaController extends Controller
      * @param  \App\Models\Cronograma  $cronograma
      * @return \Illuminate\Http\Response
      */
-    public function destroy()
+    public function destroy(Request $request, $id)
     {
-        //
+        $destroy = $this->cronogramaRepository->destroy($id);
+        if (!empty($destroy)) {
+            return redirect()->back()->with('success', 'Registro Removido');
+        } else {
+            return redirect()->back()->with('error', 'Erro inesperado ao remover atividade')->withInput();
+        }
     }
 }

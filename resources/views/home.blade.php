@@ -19,6 +19,7 @@
                                 <th>Dia da Semana</th>
                                 <th>Hora</th>
                                 <th>Criado em</th>
+                                <th>Ações</th>
                             </tr>
                         </thead>
                     </table>
@@ -63,6 +64,10 @@
                 {
                     data: 'created_at',
                     name: 'created_at'
+                },
+                {
+                    data: 'acoes',
+                    name: 'acoes'
                 },
             
             ],

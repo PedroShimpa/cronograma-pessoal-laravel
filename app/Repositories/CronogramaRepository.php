@@ -37,14 +37,23 @@ class CronogramaRepository
 		$cronogramas = $this->cronograma->getAll($user_id);
 		$data =  $this->dataTables->of($cronogramas)
 			->addIndexColumn()
-			->whiteList('atividade', 'dia_semana', 'hora','created_at');
+			->whiteList('atividade', 'dia_semana', 'hora', 'created_at')
+			->addColumn('acoes', function ($q) {
+				$rota = route('destroy.atividade', $q->id);
+				return '<a href="' . $rota . '" class="btn btn-danger font-weight-bold">X</a>';
+			});
 
 		return $data
-			->toJson();
+			->rawColumns(['acoes'])->toJson();
 	}
 
 	public function getdiasSemana()
 	{
 		return $this->cronograma->diasSemana;
+	}
+
+	public function destroy(int $id)
+	{
+		return $this->cronograma->destroy($id);
 	}
 }
